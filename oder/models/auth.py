@@ -12,6 +12,6 @@ class User(AbstractUser):
         (2, '运维'),
         (3, '项目经理'),
     )
-    realName=models.CharField('真实姓名',max_length=32),
+    realname=models.CharField('真实姓名',max_length=32),
     phone=models.CharField('手机号码',max_length=11,unique=True,null=True,blank=True),
     user_type=models.SmallIntegerField('用例模型',choices= USER_TYPE,default=1)

@@ -132,3 +132,31 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#rest框架配置
+REST_FRAMEWORK={
+    # 默认的渲染器
+    'DEFAULT_RENDERER_CLASSES': (
+        # 'rest_framework.renderers.JSONRenderer',
+        # 'rest_framework.renderers.BrowsableAPIRenderer',
+        'utils.renderers.MyRenderer',  #注册自定义渲染器
+    ),
+    #异常处理模块
+    'EXCEPTION_HANDLER':'utils.exception.my_exception_handler',
+    #全局认证模块--如果需要生效需要和权限模块一起配置才会生效
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    #全局权限模块
+    'DEFAULT_PERMISSION_CLASSES':(
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    # # 全局默认分页
+    # # 'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',
+    # 'DEFAULT_PAGINATION_CLASS':'sqtp.pagination.MyPageNumberPagination',
+    # 'PAGE_SIZE':10
+
+}
+
+#让django使用此模型作为用户模型
+AUTH_USER_MODEL= 'oder.User'
